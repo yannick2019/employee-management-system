@@ -27,7 +27,7 @@ public class EmployeesController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult GetEmployees()
+    public ActionResult<List<GetEmployeesDto>> GetEmployees()
     {
         var employeeList = _employeeRepository.GetEmployees();
 
