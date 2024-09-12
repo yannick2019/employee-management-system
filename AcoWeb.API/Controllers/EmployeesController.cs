@@ -1,5 +1,6 @@
 using AcoWeb.API.DTOs;
 using AcoWeb.API.Services;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AcoWeb.API.Controllers;
@@ -9,11 +10,13 @@ namespace AcoWeb.API.Controllers;
 public class EmployeesController : ControllerBase
 {
     private readonly IEmployeeRepository _employeeRepository;
+    private readonly IMapper _mapper;
 
-    public EmployeesController(IEmployeeRepository employeeRepository)
+    public EmployeesController(IEmployeeRepository employeeRepository, IMapper mapper)
     {
         _employeeRepository = employeeRepository ??
             throw new ArgumentNullException(nameof(employeeRepository));
+        _mapper = mapper;
     }
 
     [HttpGet("{officeId}")]
@@ -26,16 +29,10 @@ public class EmployeesController : ControllerBase
     [HttpGet]
     public IActionResult GetEmployees()
     {
-        var employees = _employeeRepository.GetEmployees();
+        var employeeList = _employeeRepository.GetEmployees();
 
-        var employeesDtoList = from e in employees
-                               select new GetEmployeesDto
-                               {
-                                   Id = e.Id,
-                                   FullName = e.FullName,
-                                   Hired = e.Hired,
-                                   RoleInCompany = e.RoleInCompany
-                               };
+        var employeesDtoList = _mapper.Map<List<GetEmployeesDto>>(employeeList);
+
         return Ok(employeesDtoList);
     }
 }

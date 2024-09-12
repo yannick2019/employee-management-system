@@ -18,6 +18,8 @@ public static class ServicesExtension
             options.LogTo(Console.WriteLine);
         });
 
+        builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
         builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
         return services;
