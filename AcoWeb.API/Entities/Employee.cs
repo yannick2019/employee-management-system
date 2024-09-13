@@ -29,7 +29,8 @@ public class Employee
 
     [ForeignKey("OfficeId")]
     public Office? Office { get; set; }
-
     public Guid OfficeId { get; set; }
+
+    public virtual EmployeeAddress EmployeeAddress { get; set; } = null!;
 
 }
