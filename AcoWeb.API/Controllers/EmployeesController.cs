@@ -20,10 +20,13 @@ public class EmployeesController : ControllerBase
     }
 
     [HttpGet("{officeId}")]
-    public IActionResult GetEmployeesByOffice(Guid officeId)
+    public ActionResult<List<GetEmployeesDto>> GetEmployeesByOffice(Guid officeId)
     {
         var employees = _employeeRepository.GetEmployeesByOffice(officeId);
-        return Ok(employees);
+
+        var employeesDto = _mapper.Map<List<GetEmployeesDto>>(employees);
+
+        return Ok(employeesDto);
     }
 
     [HttpGet]
@@ -34,5 +37,15 @@ public class EmployeesController : ControllerBase
         var employeesDtoList = _mapper.Map<List<GetEmployeesDto>>(employeeList);
 
         return Ok(employeesDtoList);
+    }
+
+    [HttpGet("{officeId}/{employeeId}")]
+    public ActionResult<GetEmployeeDto> GetEmployee(Guid employeeId, Guid officeId)
+    {
+        var employee = _employeeRepository.GetEmployee(employeeId, officeId);
+
+        var employeeDto = _mapper.Map<GetEmployeeDto>(employee);
+
+        return employee is null ? NotFound("Employee not found") : Ok(employeeDto);
     }
 }

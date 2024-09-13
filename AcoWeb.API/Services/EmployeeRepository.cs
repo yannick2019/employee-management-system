@@ -12,9 +12,11 @@ public class EmployeeRepository : IEmployeeRepository
         _context = context ?? throw new ArgumentNullException(nameof(context));
     }
 
-    public Employee GetEmployee(Guid employeeId, Guid officeId)
+    public Employee? GetEmployee(Guid employeeId, Guid officeId)
     {
-        throw new NotImplementedException();
+        return _context.Employees
+                        .Where(e => e.Id == employeeId && e.OfficeId == officeId)
+                        .FirstOrDefault();
     }
 
     public IEnumerable<Employee> GetEmployees()

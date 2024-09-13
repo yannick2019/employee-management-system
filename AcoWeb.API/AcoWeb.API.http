@@ -3,3 +3,6 @@ GET http://localhost:5000/api/employees/d097a599-4619-4473-ae86-d353c3069597
 ###
 
 GET http://localhost:5000/api/employees
+
+###
+GET http://localhost:5000/api/employees/d097a599-4619-4473-ae86-d353c3069597/217cfe3f-f278-4ce8-84de-d9d523ca3802

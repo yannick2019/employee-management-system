@@ -4,7 +4,7 @@ namespace AcoWeb.API.Services;
 
 public interface IEmployeeRepository
 {
-    Employee GetEmployee(Guid employeeId, Guid officeId);
+    Employee? GetEmployee(Guid officeId, Guid employeeId);
     IEnumerable<Employee> GetEmployeesByOffice(Guid officeId);
     IEnumerable<Employee> GetEmployees();
 }
