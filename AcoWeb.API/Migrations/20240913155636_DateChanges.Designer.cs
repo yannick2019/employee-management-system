@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AcoWeb.API.Migrations
 {
     [DbContext(typeof(EmployeesContext))]
-    [Migration("20240912165531_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20240913155636_DateChanges")]
+    partial class DateChanges
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,12 +26,17 @@ namespace AcoWeb.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("FullName")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTimeOffset>("Hired")
+                    b.Property<DateTimeOffset>("HireDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("OfficeId")
@@ -56,8 +61,9 @@ namespace AcoWeb.API.Migrations
                         new
                         {
                             Id = new Guid("6978cc16-5f5a-4020-bb79-4cc4dcc36b72"),
-                            FullName = "Antonio P Summers",
-                            Hired = new DateTimeOffset(new DateTime(2019, 9, 12, 18, 55, 30, 886, DateTimeKind.Unspecified).AddTicks(8820), new TimeSpan(0, 2, 0, 0, 0)),
+                            FirstName = "Antonio",
+                            HireDate = new DateTimeOffset(new DateTime(2012, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            LastName = "P Summers",
                             OfficeId = new Guid("5ab77607-42e8-4a25-b47a-db8983a652e8"),
                             RoleInCompany = "Manager",
                             Salary = 200000m
@@ -65,8 +71,9 @@ namespace AcoWeb.API.Migrations
                         new
                         {
                             Id = new Guid("4fa3169e-0779-45cc-9139-dc4ee92cbd5f"),
-                            FullName = "Colton R Minton",
-                            Hired = new DateTimeOffset(new DateTime(2022, 9, 12, 18, 55, 30, 886, DateTimeKind.Unspecified).AddTicks(8860), new TimeSpan(0, 2, 0, 0, 0)),
+                            FirstName = "Colton",
+                            HireDate = new DateTimeOffset(new DateTime(2012, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            LastName = "Minton",
                             OfficeId = new Guid("5ab77607-42e8-4a25-b47a-db8983a652e8"),
                             RoleInCompany = "Backend developer",
                             Salary = 190000m
@@ -74,8 +81,9 @@ namespace AcoWeb.API.Migrations
                         new
                         {
                             Id = new Guid("3675f42d-9bbb-488f-bd36-c7e6411c87d5"),
-                            FullName = "Crystal F Krupa",
-                            Hired = new DateTimeOffset(new DateTime(2022, 9, 12, 18, 55, 30, 886, DateTimeKind.Unspecified).AddTicks(8870), new TimeSpan(0, 2, 0, 0, 0)),
+                            FirstName = "Crystal",
+                            HireDate = new DateTimeOffset(new DateTime(2012, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            LastName = "Krupa",
                             OfficeId = new Guid("5ab77607-42e8-4a25-b47a-db8983a652e8"),
                             RoleInCompany = "Developer",
                             Salary = 420000m
@@ -83,8 +91,9 @@ namespace AcoWeb.API.Migrations
                         new
                         {
                             Id = new Guid("ea3a236e-fda4-4e3f-ae1d-3bd3a535a177"),
-                            FullName = "Caitlin J Nicholson",
-                            Hired = new DateTimeOffset(new DateTime(2022, 9, 12, 18, 55, 30, 886, DateTimeKind.Unspecified).AddTicks(8880), new TimeSpan(0, 2, 0, 0, 0)),
+                            FirstName = "Caitlin",
+                            HireDate = new DateTimeOffset(new DateTime(2012, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            LastName = "Nicholson",
                             OfficeId = new Guid("5ab77607-42e8-4a25-b47a-db8983a652e8"),
                             RoleInCompany = "Sellman",
                             Salary = 100000m
@@ -92,8 +101,9 @@ namespace AcoWeb.API.Migrations
                         new
                         {
                             Id = new Guid("270ed53a-053b-442a-9302-716959d0a51a"),
-                            FullName = "Kristi C Mauricio",
-                            Hired = new DateTimeOffset(new DateTime(2022, 9, 12, 18, 55, 30, 886, DateTimeKind.Unspecified).AddTicks(8880), new TimeSpan(0, 2, 0, 0, 0)),
+                            FirstName = "Kristi",
+                            HireDate = new DateTimeOffset(new DateTime(2012, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            LastName = "Mauricio",
                             OfficeId = new Guid("5ab77607-42e8-4a25-b47a-db8983a652e8"),
                             RoleInCompany = "Credit officer",
                             Salary = 200000m
@@ -101,8 +111,9 @@ namespace AcoWeb.API.Migrations
                         new
                         {
                             Id = new Guid("b1ee8f72-0cc0-4cd9-bcc6-11183cf24da8"),
-                            FullName = "Thomas D Spates",
-                            Hired = new DateTimeOffset(new DateTime(2022, 9, 12, 18, 55, 30, 886, DateTimeKind.Unspecified).AddTicks(8880), new TimeSpan(0, 2, 0, 0, 0)),
+                            FirstName = "Thomas",
+                            HireDate = new DateTimeOffset(new DateTime(2012, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            LastName = "Spates",
                             OfficeId = new Guid("7c862b39-c6d1-4c91-8181-c6cc35890bca"),
                             RoleInCompany = "Sellman",
                             Salary = 200000m
@@ -110,8 +121,9 @@ namespace AcoWeb.API.Migrations
                         new
                         {
                             Id = new Guid("d447d3e9-82d3-4aba-80ae-223a6683f5c3"),
-                            FullName = "Pattie L Foster",
-                            Hired = new DateTimeOffset(new DateTime(2022, 9, 12, 18, 55, 30, 886, DateTimeKind.Unspecified).AddTicks(8890), new TimeSpan(0, 2, 0, 0, 0)),
+                            FirstName = "Pattie",
+                            HireDate = new DateTimeOffset(new DateTime(2012, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            LastName = "Foster",
                             OfficeId = new Guid("7c862b39-c6d1-4c91-8181-c6cc35890bca"),
                             RoleInCompany = "Sellman",
                             Salary = 400000m
@@ -119,8 +131,9 @@ namespace AcoWeb.API.Migrations
                         new
                         {
                             Id = new Guid("c5dceee6-ab09-42ab-bc30-cb0e91114b3d"),
-                            FullName = "Candy J Gilbert",
-                            Hired = new DateTimeOffset(new DateTime(2022, 9, 12, 18, 55, 30, 886, DateTimeKind.Unspecified).AddTicks(8890), new TimeSpan(0, 2, 0, 0, 0)),
+                            FirstName = "Candy",
+                            HireDate = new DateTimeOffset(new DateTime(2012, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            LastName = "Gilbert",
                             OfficeId = new Guid("7c862b39-c6d1-4c91-8181-c6cc35890bca"),
                             RoleInCompany = "Web developer",
                             Salary = 500000m
@@ -128,8 +141,9 @@ namespace AcoWeb.API.Migrations
                         new
                         {
                             Id = new Guid("85cbcd1f-8b72-4398-b2fe-b2776ab0be0f"),
-                            FullName = "Jessica R Gibbs",
-                            Hired = new DateTimeOffset(new DateTime(2019, 9, 12, 18, 55, 30, 886, DateTimeKind.Unspecified).AddTicks(8890), new TimeSpan(0, 2, 0, 0, 0)),
+                            FirstName = "Jessica",
+                            HireDate = new DateTimeOffset(new DateTime(2012, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            LastName = "Gibbs",
                             OfficeId = new Guid("ca2abc8e-1bdc-4887-8f97-215fe050f22f"),
                             RoleInCompany = "Manager",
                             Salary = 200000m
@@ -137,8 +151,9 @@ namespace AcoWeb.API.Migrations
                         new
                         {
                             Id = new Guid("8588c7bf-2bd4-436a-a1fc-9c790895b9d5"),
-                            FullName = "Rhonda R Macklin",
-                            Hired = new DateTimeOffset(new DateTime(2022, 9, 12, 18, 55, 30, 886, DateTimeKind.Unspecified).AddTicks(8900), new TimeSpan(0, 2, 0, 0, 0)),
+                            FirstName = "Rhonda",
+                            HireDate = new DateTimeOffset(new DateTime(2012, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            LastName = "Macklin",
                             OfficeId = new Guid("ca2abc8e-1bdc-4887-8f97-215fe050f22f"),
                             RoleInCompany = "Backend developer",
                             Salary = 190000m
@@ -146,8 +161,9 @@ namespace AcoWeb.API.Migrations
                         new
                         {
                             Id = new Guid("c3f4100c-f746-467b-ab9e-4c16361a44af"),
-                            FullName = "Willie M Overton",
-                            Hired = new DateTimeOffset(new DateTime(2019, 9, 12, 18, 55, 30, 886, DateTimeKind.Unspecified).AddTicks(8900), new TimeSpan(0, 2, 0, 0, 0)),
+                            FirstName = "Willie",
+                            HireDate = new DateTimeOffset(new DateTime(2012, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            LastName = "Overton",
                             OfficeId = new Guid("ca2abc8e-1bdc-4887-8f97-215fe050f22f"),
                             RoleInCompany = "Head Of Developers",
                             Salary = 12500000m
@@ -155,8 +171,9 @@ namespace AcoWeb.API.Migrations
                         new
                         {
                             Id = new Guid("d11d3a8d-30b6-4b3a-ad9b-ab2141a2f6bb"),
-                            FullName = "Gary E Owens",
-                            Hired = new DateTimeOffset(new DateTime(2022, 9, 12, 18, 55, 30, 886, DateTimeKind.Unspecified).AddTicks(8900), new TimeSpan(0, 2, 0, 0, 0)),
+                            FirstName = "Gary",
+                            HireDate = new DateTimeOffset(new DateTime(2012, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            LastName = "Owens",
                             OfficeId = new Guid("d097a599-4619-4473-ae86-d353c3069597"),
                             RoleInCompany = "Sellman",
                             Salary = 100000m
@@ -164,8 +181,9 @@ namespace AcoWeb.API.Migrations
                         new
                         {
                             Id = new Guid("5c0bd7ac-a87b-4e92-81bb-14de6fdc6808"),
-                            FullName = "Bart J Burgess",
-                            Hired = new DateTimeOffset(new DateTime(2022, 9, 12, 18, 55, 30, 886, DateTimeKind.Unspecified).AddTicks(8910), new TimeSpan(0, 2, 0, 0, 0)),
+                            FirstName = "Bart",
+                            HireDate = new DateTimeOffset(new DateTime(2012, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            LastName = "Burgess",
                             OfficeId = new Guid("d097a599-4619-4473-ae86-d353c3069597"),
                             RoleInCompany = "Credit officer",
                             Salary = 250000m
@@ -173,8 +191,9 @@ namespace AcoWeb.API.Migrations
                         new
                         {
                             Id = new Guid("217cfe3f-f278-4ce8-84de-d9d523ca3802"),
-                            FullName = "Diane E Perry",
-                            Hired = new DateTimeOffset(new DateTime(2022, 9, 12, 18, 55, 30, 886, DateTimeKind.Unspecified).AddTicks(8910), new TimeSpan(0, 2, 0, 0, 0)),
+                            FirstName = "Diane",
+                            HireDate = new DateTimeOffset(new DateTime(2012, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            LastName = "Perry",
                             OfficeId = new Guid("d097a599-4619-4473-ae86-d353c3069597"),
                             RoleInCompany = "Sellman",
                             Salary = 100000m
@@ -182,8 +201,9 @@ namespace AcoWeb.API.Migrations
                         new
                         {
                             Id = new Guid("532c9736-4fb6-4a4d-aa8f-e7a2d6a4ca49"),
-                            FullName = "Sarah R Crews",
-                            Hired = new DateTimeOffset(new DateTime(2022, 9, 12, 18, 55, 30, 886, DateTimeKind.Unspecified).AddTicks(8920), new TimeSpan(0, 2, 0, 0, 0)),
+                            FirstName = "Sarah",
+                            HireDate = new DateTimeOffset(new DateTime(2012, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            LastName = "Crews",
                             OfficeId = new Guid("d097a599-4619-4473-ae86-d353c3069597"),
                             RoleInCompany = "Sellman",
                             Salary = 240000m
@@ -191,8 +211,9 @@ namespace AcoWeb.API.Migrations
                         new
                         {
                             Id = new Guid("f3ad3974-0c05-4db0-bda0-dee18f00a291"),
-                            FullName = "Catherine J Easley",
-                            Hired = new DateTimeOffset(new DateTime(2022, 9, 12, 18, 55, 30, 886, DateTimeKind.Unspecified).AddTicks(8920), new TimeSpan(0, 2, 0, 0, 0)),
+                            FirstName = "Catherine",
+                            HireDate = new DateTimeOffset(new DateTime(2012, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            LastName = "Easley",
                             OfficeId = new Guid("d097a599-4619-4473-ae86-d353c3069597"),
                             RoleInCompany = "Web developer",
                             Salary = 100000m

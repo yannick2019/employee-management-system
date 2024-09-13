@@ -12,11 +12,16 @@ public class Employee
     [MaxLength(100)]
     public string RoleInCompany { get; set; } = null!;
 
+    [Required]
     [MaxLength(50)]
-    public string FullName { get; set; } = null!;
+    public string FirstName { get; set; } = null!;
 
     [Required]
-    public DateTimeOffset Hired { get; set; }
+    [MaxLength(50)]
+    public string LastName { get; set; } = null!;
+
+    [Required]
+    public DateTimeOffset HireDate { get; set; }
 
     [Required]
     [MaxLength(50)]
