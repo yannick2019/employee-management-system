@@ -331,8 +331,7 @@ namespace AcoWeb.API.Migrations
 
             modelBuilder.Entity("AcoWeb.API.Entities.Employee", b =>
                 {
-                    b.Navigation("EmployeeAddress")
-                        .IsRequired();
+                    b.Navigation("EmployeeAddress");
                 });
 
             modelBuilder.Entity("AcoWeb.API.Entities.Office", b =>

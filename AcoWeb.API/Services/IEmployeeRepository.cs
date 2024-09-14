@@ -4,7 +4,10 @@ namespace AcoWeb.API.Services;
 
 public interface IEmployeeRepository
 {
-    Employee? GetEmployee(Guid officeId, Guid employeeId);
-    IEnumerable<Employee> GetEmployeesByOffice(Guid officeId);
-    IEnumerable<Employee> GetEmployees();
+    Task<Employee?> GetEmployee(Guid officeId, Guid employeeId);
+    Task<IEnumerable<Employee>> GetEmployeesByOffice(Guid officeId);
+    Task<IEnumerable<Employee>> GetEmployees();
+    Task<Employee> AddEmployee(Employee employee);
+    Task UpdateEmployee(Guid employeeId, Employee updatedEmployee);
+    Task DeleteEmployee(Guid employeeId);
 }

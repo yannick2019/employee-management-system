@@ -31,6 +31,5 @@ public class Employee
     public Office? Office { get; set; }
     public Guid OfficeId { get; set; }
 
-    public virtual EmployeeAddress EmployeeAddress { get; set; } = null!;
-
+    public EmployeeAddress? EmployeeAddress { get; set; }
 }

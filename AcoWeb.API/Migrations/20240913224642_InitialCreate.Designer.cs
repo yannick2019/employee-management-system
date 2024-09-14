@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AcoWeb.API.Migrations
 {
     [DbContext(typeof(EmployeesContext))]
-    [Migration("20240913155636_DateChanges")]
-    partial class DateChanges
+    [Migration("20240913224642_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -220,6 +220,31 @@ namespace AcoWeb.API.Migrations
                         });
                 });
 
+            modelBuilder.Entity("AcoWeb.API.Entities.EmployeeAddress", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("EmployeeId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("HomeAddress")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId")
+                        .IsUnique();
+
+                    b.ToTable("EmployeeAddress");
+                });
+
             modelBuilder.Entity("AcoWeb.API.Entities.Office", b =>
                 {
                     b.Property<Guid>("Id")
@@ -294,6 +319,22 @@ namespace AcoWeb.API.Migrations
                         .IsRequired();
 
                     b.Navigation("Office");
+                });
+
+            modelBuilder.Entity("AcoWeb.API.Entities.EmployeeAddress", b =>
+                {
+                    b.HasOne("AcoWeb.API.Entities.Employee", "Employee")
+                        .WithOne("EmployeeAddress")
+                        .HasForeignKey("AcoWeb.API.Entities.EmployeeAddress", "EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("AcoWeb.API.Entities.Employee", b =>
+                {
+                    b.Navigation("EmployeeAddress");
                 });
 
             modelBuilder.Entity("AcoWeb.API.Entities.Office", b =>

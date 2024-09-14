@@ -17,6 +17,11 @@ public class EmployeesContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
+        modelBuilder.Entity<Employee>()
+            .HasOne(e => e.EmployeeAddress)
+            .WithOne(ea => ea.Employee)
+            .HasForeignKey<EmployeeAddress>(ea => ea.EmployeeId);
+
         // Seed the database with some data
         modelBuilder.Entity<Office>().HasData(
             new Office
