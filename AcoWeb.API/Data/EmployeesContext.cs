@@ -1,9 +1,11 @@
 using AcoWeb.API.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace AcoWeb.API.Data;
 
-public class EmployeesContext : DbContext
+public class EmployeesContext : IdentityDbContext<AppUser, IdentityRole, string>
 {
     public EmployeesContext(DbContextOptions<EmployeesContext> options) : base(options)
     {

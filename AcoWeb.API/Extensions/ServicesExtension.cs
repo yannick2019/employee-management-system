@@ -1,7 +1,9 @@
 using System.Reflection;
 using AcoWeb.API.Data;
 using AcoWeb.API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -11,7 +13,11 @@ public static class ServicesExtension
 {
     public static IServiceCollection AddServices(this IServiceCollection services, WebApplicationBuilder builder)
     {
-        builder.Services.AddControllers();
+        builder.Services.AddControllers(options =>
+        {
+            var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+            options.Filters.Add(new AuthorizeFilter(policy));
+        });
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
@@ -34,8 +40,32 @@ public static class ServicesExtension
         {
             options.SwaggerDoc("v1", new OpenApiInfo
             {
-                Title = "Employee Management System API",
-                Version = "v1"
+                Version = "v1",
+                Title = "Employee Management System",
+                Description = "An ASP.NET Core Web API",
+            });
+
+            options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            {
+                Description = "JWT Authorization header using the Bearer scheme.",
+                Name = "Authorization",
+                Type = SecuritySchemeType.ApiKey,
+                Scheme = "Bearer",
+                BearerFormat = "JWT",
+                In = ParameterLocation.Header
+            });
+
+            options.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference{
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        }
+                    },Array.Empty<string>()
+                }
             });
 
             // Add support for XML comments
@@ -44,8 +74,8 @@ public static class ServicesExtension
         });
 
         builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
         builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+        builder.Services.AddScoped<TokenService>();
 
         return services;
     }

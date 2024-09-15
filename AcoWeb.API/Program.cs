@@ -1,9 +1,14 @@
 using AcoWeb.API.Extensions;
+using DotNetEnv;
+
+Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Configuration.AddEnvironmentVariables();
 builder.Services.AddServices(builder);
+builder.Services.AddIdentityServices(builder.Configuration);
 
 var app = builder.Build();
 
@@ -18,12 +23,16 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.UseRouting();
+
+app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllers();
 
 
 // Create database at application startup
-app.Services.InitializeDatabase();
+//app.Services.InitializeDatabase();
 
 app.Run();

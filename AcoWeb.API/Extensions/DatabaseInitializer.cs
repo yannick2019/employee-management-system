@@ -11,6 +11,7 @@ public static class DatabaseInitializer
         try
         {
             var context = scope.ServiceProvider.GetService<EmployeesContext>();
+            context!.Database.EnsureCreated();
             context!.Database.EnsureDeleted();
             context.Database.Migrate();
         }
