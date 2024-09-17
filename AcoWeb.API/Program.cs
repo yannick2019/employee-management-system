@@ -23,6 +23,8 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.UseCors("CorsPolicy");
+
 app.UseRouting();
 
 app.UseAuthentication();

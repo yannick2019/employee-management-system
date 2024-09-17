@@ -27,6 +27,17 @@ public static class ServicesExtension
             options.LogTo(Console.WriteLine);
         });
 
+        builder.Services.AddCors(option =>
+        {
+            option.AddPolicy("CorsPolicy", policy =>
+            {
+                policy.AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials()
+                    .WithOrigins("http://localhost:4200");
+            });
+        });
+
         // Configure API versioning
         builder.Services.AddApiVersioning(options =>
         {
