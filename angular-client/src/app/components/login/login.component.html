@@ -1,13 +1,17 @@
-<section>
+<section id="login-section" class="row">
   <h1>Log in</h1>
   <form>
-    <label for="">Email</label>
-    <input type="text" />
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input id="email" type="text" class="form-control" />
+    </div>
 
-    <label for="">Password</label>
-    <input type="password" />
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input id="password" type="password" class="form-control" />
+    </div>
 
-    <button type="submit">Log in</button>
+    <button type="submit" class="btn btn-primary mb-3">Log in</button>
   </form>
   <p>Don't have account? <a href="/sign-up">Sign up</a></p>
 </section>
