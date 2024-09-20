@@ -1,1 +1,93 @@
-<p>add-employee works!</p>
+<section id="add-employee-section" class="row">
+  <h1 class="my-4">Add New Employee</h1>
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="roleInCompany" class="form-label">Role in Company</label>
+      <input
+        id="roleInCompany"
+        formControlName="roleInCompany"
+        type="text"
+        class="form-control"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="firstName" class="form-label">First Name</label>
+      <input
+        id="firstName"
+        formControlName="firstName"
+        type="text"
+        class="form-control"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Last Name</label>
+      <input
+        id="lastName"
+        formControlName="lastName"
+        type="text"
+        class="form-control"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="salary" class="form-label">Salary</label>
+      <input
+        id="salary"
+        formControlName="salary"
+        type="number"
+        class="form-control"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="homeAddress" class="form-label">Home Address</label>
+      <input
+        id="homeAddress"
+        formControlName="homeAddress"
+        type="text"
+        class="form-control"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="city" class="form-label">City</label>
+      <input
+        id="city"
+        formControlName="city"
+        type="text"
+        class="form-control"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="hireDate" class="form-label">Hire Date</label>
+      <input
+        id="hireDate"
+        formControlName="hireDate"
+        type="date"
+        class="form-control"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="officeId" class="form-label">Office</label>
+      <select id="officeId" formControlName="officeId" class="form-control">
+        <option value="">--Please select office--</option>
+        <option *ngFor="let office of offices" [value]="office.id">
+          {{ office.name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="d-flex justify-content-between mt-4">
+      <div>
+        <button type="submit" class="mb-3 btn btn-primary">Add Employee</button>
+      </div>
+      <div>
+        <a routerLink="/employees" class="mb-3 btn btn-secondary">Cancel</a>
+      </div>
+    </div>
+  </form>
+</section>

@@ -13,11 +13,12 @@ public static class ServicesExtension
 {
     public static IServiceCollection AddServices(this IServiceCollection services, WebApplicationBuilder builder)
     {
-        builder.Services.AddControllers(options =>
-        {
-            var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-            options.Filters.Add(new AuthorizeFilter(policy));
-        });
+        builder.Services.AddControllers();
+        // builder.Services.AddControllers(options =>
+        // {
+        //     var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+        //     options.Filters.Add(new AuthorizeFilter(policy));
+        // });
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
@@ -86,6 +87,7 @@ public static class ServicesExtension
 
         builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+        builder.Services.AddScoped<IOfficeRepository, OfficeRepository>();
         builder.Services.AddScoped<TokenService>();
 
         return services;

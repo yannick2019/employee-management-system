@@ -1,1 +1,36 @@
-<p>employee-list works!</p>
+<section class="row">
+  <h1 class="my-4">List of employees</h1>
+  <div class="col-12">
+    @if (isLoader == true) {
+    <div class="spinner-border m-5" role="status">
+      <span class="sr-only"></span>
+    </div>
+
+    } @else {
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Role in Company</th>
+          <th>Hire Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employees">
+          <td>{{ employee.firstName }}</td>
+          <td>{{ employee.lastName }}</td>
+          <td>{{ employee.roleInCompany }}</td>
+          <td>{{ employee.hireDate | date }}</td>
+          <td>
+            <a href="">Details</a>
+            <a href="">Update</a>
+            <a href="">Delete</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    }
+  </div>
+</section>

@@ -1,6 +1,6 @@
-import { EmployeeAddress } from './EmployeeAddress';
+import { IEmployeeAddress } from './IEmployeeAddress';
 
-export interface Employee {
+export interface IEmployee {
   id: string;
   firstName: string;
   lastName: string;
@@ -8,5 +8,5 @@ export interface Employee {
   salary: Number;
   hireDate: Date;
   officeId: string;
-  employeeAddress: EmployeeAddress;
+  employeeAddress: IEmployeeAddress;
 }

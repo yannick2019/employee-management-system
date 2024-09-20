@@ -1,4 +1,4 @@
-export interface EmployeeAddress {
+export interface IEmployeeAddress {
   id: string;
   homeAddress: string;
   city: string;

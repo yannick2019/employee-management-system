@@ -9,6 +9,7 @@ namespace AcoWeb.API.Controllers;
 
 [ApiController]
 [Route("api/employees")]
+//[Authorize]
 public class EmployeesController : ControllerBase
 {
     private readonly IEmployeeRepository _employeeRepository;
@@ -29,7 +30,6 @@ public class EmployeesController : ControllerBase
     /// <response code="200">Returns the list of employees.</response>
     /// <response code="404">If no employees are found for the specified office.</response>
     [HttpGet("{officeId}")]
-    [Authorize]
     public async Task<ActionResult<List<GetEmployeesDto>>> GetEmployeesByOffice(Guid officeId)
     {
         var employees = await _employeeRepository.GetEmployeesByOffice(officeId);
@@ -46,7 +46,6 @@ public class EmployeesController : ControllerBase
     /// <response code="200">Returns the list of employees.</response>
     /// <response code="404">If no employees are found.</response>
     [HttpGet]
-    [Authorize]
     public async Task<ActionResult<List<GetEmployeesDto>>> GetEmployees()
     {
         var employeeList = await _employeeRepository.GetEmployees();
@@ -65,7 +64,6 @@ public class EmployeesController : ControllerBase
     /// <response code="200">Returns the employee data.</response>
     /// <response code="404">If the employee is not found.</response>
     [HttpGet("{officeId}/{employeeId}")]
-    [Authorize]
     public async Task<ActionResult<GetEmployeeDto>> GetEmployee(Guid employeeId, Guid officeId)
     {
         var employee = await _employeeRepository.GetEmployee(employeeId, officeId);
@@ -83,7 +81,6 @@ public class EmployeesController : ControllerBase
     /// <response code="201">Returns the newly created employee.</response>
     /// <response code="400">If the employee data transfer object is null or invalid.</response>
     [HttpPost]
-    [Authorize]
     [ProducesResponseType(201)]
     [ProducesResponseType(400)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -106,7 +103,6 @@ public class EmployeesController : ControllerBase
     /// <response code="400">If the employee ID in the route does not match the employee ID in the DTO.</response>
     /// <response code="404">If the employee is not found.</response>
     [HttpPut("{employeeId}")]
-    [Authorize]
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -139,7 +135,6 @@ public class EmployeesController : ControllerBase
     /// <response code="204">If the employee was successfully deleted.</response>
     /// <response code="404">If the employee is not found.</response>
     [HttpDelete("{employeeId}")]
-    [Authorize]
     [ProducesResponseType(204)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Delete(Guid employeeId)
