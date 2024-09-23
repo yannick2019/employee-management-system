@@ -23,10 +23,17 @@
           <td>{{ employee.lastName }}</td>
           <td>{{ employee.roleInCompany }}</td>
           <td>{{ employee.hireDate | date }}</td>
-          <td>
+          <td class="d-flex items-center gap-4">
             <a href="">Details</a>
-            <a href="">Update</a>
-            <a href="">Delete</a>
+            <button
+              class="btn btn-light"
+              (click)="onUpdate(employee.id, employee.officeId)"
+            >
+              Update
+            </button>
+            <button class="btn btn-danger" (click)="onDelete(employee.id)">
+              Delete
+            </button>
           </td>
         </tr>
       </tbody>

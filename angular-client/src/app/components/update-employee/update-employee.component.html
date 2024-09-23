@@ -1,5 +1,5 @@
-<section id="add-employee-section" class="row">
-  <h1 class="my-4">Add New Employee</h1>
+<section id="update-employee-section" class="row">
+  <h1>Update Employee</h1>
   <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
     <div class="mb-3">
       <label for="roleInCompany" class="form-label">Role in Company</label>
@@ -8,6 +8,7 @@
         formControlName="roleInCompany"
         type="text"
         class="form-control"
+        [value]="employeeForm.get('roleInCompany')?.value"
       />
     </div>
 
@@ -18,6 +19,7 @@
         formControlName="firstName"
         type="text"
         class="form-control"
+        [value]="employeeForm.get('firstName')?.value"
       />
     </div>
 
@@ -74,7 +76,6 @@
     <div class="mb-3">
       <label for="officeId" class="form-label">Office</label>
       <select id="officeId" formControlName="officeId" class="form-control">
-        <option value="">--Please select office--</option>
         <option *ngFor="let office of offices" [value]="office.id">
           {{ office.name }}
         </option>
@@ -83,7 +84,9 @@
 
     <div class="d-flex justify-content-between mt-4">
       <div>
-        <button type="submit" class="mb-3 btn btn-primary">Add Employee</button>
+        <button type="submit" class="mb-3 btn btn-primary">
+          Update Employee
+        </button>
       </div>
       <div>
         <a routerLink="/" class="mb-3 btn btn-secondary">Cancel</a>

@@ -65,7 +65,7 @@ export class AddEmployeeComponent implements OnInit {
       this.employeeService.addEmployee(employee).subscribe({
         next: () => {
           alert('New employee added seccessfully');
-          this.router.navigate(['/employees']);
+          this.router.navigate(['/']);
         },
         error: (error) => {
           console.error('Error adding employee', error);

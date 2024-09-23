@@ -4,13 +4,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
+import { UpdateEmployeeComponent } from './components/update-employee/update-employee.component';
 
 export const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full',
-  },
   {
     path: 'login',
     component: LoginComponent,
@@ -22,21 +18,19 @@ export const routes: Routes = [
     title: 'Sign Up',
   },
   {
-    path: 'employees',
+    path: '',
     component: HomeComponent,
     title: 'All emplyees',
-    // children: [
-    //   {
-    //     path: 'new-employee',
-    //     component: AddEmployeeComponent,
-    //     title: 'Add New Employee',
-    //   },
-    // ],
   },
   {
     path: 'new-employee',
     component: AddEmployeeComponent,
     title: 'Add New Employee',
+  },
+  {
+    path: 'update-employee',
+    component: UpdateEmployeeComponent,
+    title: 'Update Employee',
   },
   { path: '**', component: PageNotFoundComponent },
 ];
